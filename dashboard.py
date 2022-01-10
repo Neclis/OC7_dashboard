@@ -2,7 +2,6 @@ import pandas as pd
 import streamlit as st
 import numpy as np
 import requests
-# from page1 import App_prediction_from_id
 
 api_url = "https://banking-data-dashboard.herokuapp.com/"
 main_features = ['EXT_SOURCE_1',
@@ -17,9 +16,13 @@ main_features = ['EXT_SOURCE_1',
                 'AMT_CREDIT_SUM_DEBT'
                 ]
 
-main_features_pd = pd.read_pickle("main_features_pd.pickle")
-X_train2_sc_pd_mean = pd.read_pickle("X_train2_sc_pd_mean.pickle")
-sample = pd.read_pickle("X_test2_sc_pd_sample.pickle")
+# main_features_pd = pd.read_pickle("main_features_pd.pickle")
+# X_train2_sc_pd_mean = pd.read_pickle("X_train2_sc_pd_mean.pickle")
+# sample = pd.read_pickle("X_test2_sc_pd_sample.pickle")
+
+main_features_pd = pd.read_csv("main_features_pd.csv", index_col="index")
+X_train2_sc_pd_mean = pd.read_csv("X_train2_sc_pd_mean.csv", index_col="index")
+sample = pd.read_csv("X_test2_sc_pd_sample.csv", index_col="index")
 
 def request_prediction( model_uri, data):
 
