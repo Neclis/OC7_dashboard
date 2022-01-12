@@ -96,12 +96,12 @@ class App_prediction_from_id:
             pred = request_prediction(FLASK_URL, data_json)
             
             my_placeholder.write("The lightgbm model predicts the following probabilities:")
-            my_placeholder1.metric("Not solvable", "{} %".format(round(pred["proba_0"],2)))
-            my_placeholder2.metric("Solvable", "{} %".format(round(pred["proba_1"],2)))
+            my_placeholder1.metric("Not solvable", "{} %".format(round(100*pred["proba_0"],2)))
+            my_placeholder2.metric("Solvable", "{} %".format(round(100*pred["proba_1"],2)))
 
             fig, ax = plt.subplots(1,1, figsize = (4,4))
             fig.suptitle("Customer {}".format(client_ID))
-            ax.set_title("The probability of solvability is {} %".format(round(pred["proba_1"],2)))
+            ax.set_title("The probability of solvability is {} %".format(round(100*pred["proba_1"],2)))
             ax.pie(list(pred.values()), labels= list(pred.keys()) , colors=["r","g"])
             ax.axis("square")
 
@@ -155,11 +155,11 @@ class App_prediction_from_data:
             pred = request_prediction(FLASK_URL, data_json)
                         
             my_placeholder.write("The lightgbm model predicts the following probabilities:")
-            my_placeholder1.metric("Not solvable", "{} %".format(round(pred["proba_0"],2)))
-            my_placeholder2.metric("Solvable", "{} %".format(round(pred["proba_1"],2)))
+            my_placeholder1.metric("Not solvable", "{} %".format(round(100*pred["proba_0"],2)))
+            my_placeholder2.metric("Solvable", "{} %".format(round(100*pred["proba_1"],2)))
 
             fig, ax = plt.subplots( 1,1, figsize = (4,4))
-            ax.set_title("The probability of solvability is {} %".format(round(pred["proba_1"],2)))
+            ax.set_title("The probability of solvability is {} %".format(round(100*pred["proba_1"],2)))
             ax.pie(list(pred.values()), labels= list(pred.keys()) , colors=["r","g"])
             ax.axis("square")
 
